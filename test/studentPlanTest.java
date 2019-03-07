@@ -6,6 +6,7 @@ import com.company.Education.University;
 import com.company.PlanCompositor;
 import com.company.Student;
 import com.company.studyConditions.AtAnyDay;
+import com.company.studyConditions.AtWorking;
 import com.company.studyConditions.OncePerMonth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,6 +44,8 @@ class studentPlanTest {
     private final int interlinkKnowledge = 3;
     private final int interlinkExperience = 4;
 
+    private LocalDate startPlanDate;
+
 //    private Meetup WorkshopMeetup;
 //    private final int
 
@@ -57,15 +60,18 @@ class studentPlanTest {
         doingHakerRank = new SelfDevelopment(selfDevKnowledge, selfDevExperience);
         interlink = new Internship(interlinkKnowledge, interlinkExperience);
 
-        universityStuding = new DevelopmentActivity(chdtu, new AtAnyDay());
+        universityStuding = new DevelopmentActivity(chdtu, new AtWorking());
         meetupAttending = new DevelopmentActivity(OOPMeetup, new OncePerMonth());
         selfDev = new DevelopmentActivity(doingHakerRank, new AtAnyDay());
-        internshipStuding = new DevelopmentActivity(interlink, new AtAnyDay());
+        internshipStuding = new DevelopmentActivity(interlink, new AtWorking());
+
+        startPlanDate = LocalDate.of(2019, 3, 1);
     }
 
     @Test
     void applyPlan__university__anyDay__isNotParticipant() {
-        plan = new PlanCompositor(LocalDate.now().plusDays(5)); // trouble
+        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // trouble
+        plan.setBeginningDate(startPlanDate);
         plan.addToSchedule(universityStuding);
         plan.applyScheduleForStudent(student);
 
@@ -75,12 +81,13 @@ class studentPlanTest {
 
     @Test
     void applyPlan__university__anyDay__isParticipant() {
-        plan = new PlanCompositor(LocalDate.now().plusDays(5)); // trouble
+        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // 21 working day
+        plan.setBeginningDate(startPlanDate);
         plan.addToSchedule(universityStuding);
         plan.applyScheduleForStudent(studentAllInclusive);
 
-        assertThat(studentAllInclusive.getKnowledge(), is(15.0));
-        assertThat(studentAllInclusive.getExperience(), is(10.0));
+        assertThat(studentAllInclusive.getKnowledge(), is(63.0));
+        assertThat(studentAllInclusive.getExperience(), is(42.0));
     }
 
     @Test
@@ -105,17 +112,19 @@ class studentPlanTest {
 
     @Test
     void applyPlan__internship__isParticipant() {
-        plan = new PlanCompositor(LocalDate.now().plusDays(5)); // trouble
+        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // 21 working day
+        plan.setBeginningDate(startPlanDate);
         plan.addToSchedule(internshipStuding);
         plan.applyScheduleForStudent(studentAllInclusive);
 
-        assertThat(studentAllInclusive.getKnowledge(), is(15.0));
-        assertThat(studentAllInclusive.getExperience(), is(20.0));
+        assertThat(studentAllInclusive.getKnowledge(), is(63.0));
+        assertThat(studentAllInclusive.getExperience(), is(84.0));
     }
 
     @Test
     void applyPlan__internship__isNotParticipant() {
-        plan = new PlanCompositor(LocalDate.now().plusDays(5)); // trouble
+        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // 21 working day
+        plan.setBeginningDate(startPlanDate);
         plan.addToSchedule(internshipStuding);
         plan.applyScheduleForStudent(student);
 
@@ -125,13 +134,14 @@ class studentPlanTest {
 
     @Test
     void applyPlan__meetup__fewActivities() {
-        plan = new PlanCompositor(LocalDate.now().plusDays(5));
+        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // 21 working day 31 total
+        plan.setBeginningDate(startPlanDate);
         plan.addToSchedule(selfDev);
         plan.addToSchedule(universityStuding);
         plan.applyScheduleForStudent(studentAllInclusive);
 
-        assertThat(studentAllInclusive.getKnowledge(), is(30.0));
-        assertThat(studentAllInclusive.getExperience(), is(25.0));
+        assertThat(studentAllInclusive.getKnowledge(), is(156.0));
+        assertThat(studentAllInclusive.getExperience(), is(135.0));
     }
 
 }
