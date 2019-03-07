@@ -4,7 +4,7 @@ import com.company.PlanCompositor;
 import com.company.Student;
 import com.company.studyConditions.ArrangedDay;
 import com.company.studyConditions.AtAnyDay;
-import com.company.studyConditions.AtWorking;
+import com.company.studyConditions.AtWorkingDays;
 import com.company.studyConditions.OncePerMonth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,10 +63,10 @@ class studentPlanTest {
         chdtu = new University(UnivKnowledge, UnivExp);
         interlink = new Internship(interlinkKnowledge, interlinkExperience);
 
-        universityStuding = new DevelopmentActivity(chdtu, new AtWorking());
+        universityStuding = new DevelopmentActivity(chdtu, new AtWorkingDays());
         meetupAttending = new DevelopmentActivity(OOPMeetup, new OncePerMonth());
         selfDev = new DevelopmentActivity(doingHakerRank, new AtAnyDay());
-        internshipStuding = new DevelopmentActivity(interlink, new AtWorking());
+        internshipStuding = new DevelopmentActivity(interlink, new AtWorkingDays());
     }
 
     @Test
@@ -173,7 +173,7 @@ class studentPlanTest {
         plan.applyScheduleForStudent(studentAllInclusive);
 
         assertThat(studentAllInclusive.getKnowledge(), is(246.0));
-        assertThat(studentAllInclusive.getExperience(), is(25.0));
+        assertThat(studentAllInclusive.getExperience(), is(225.0));
     }
 
 }

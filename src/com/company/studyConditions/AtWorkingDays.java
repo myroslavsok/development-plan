@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import static java.time.DayOfWeek.SATURDAY;
 import static java.time.DayOfWeek.SUNDAY;
 
-public class AtWorking implements AttendByDays {
+public class AtWorkingDays implements AttendByDays {
 
     @Override
     public boolean isPossibleToVisit(LocalDate date) {

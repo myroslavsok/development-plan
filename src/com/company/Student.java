@@ -10,6 +10,8 @@ public class Student {
     private boolean hasLaptop;
     private boolean isInUniversity;
     private boolean isInInternship;
+    private String name;
+
 
     public Student(StudentBuilder builder) {
         this.abilityToStudy = builder.abilityToStudy;
@@ -17,6 +19,7 @@ public class Student {
         this.hasLaptop = builder.hasLaptop;
         this.isInUniversity = builder.isInUniversity;
         this.isInInternship = builder.isInInternship;
+        this.name = builder.name;
     }
 
     public void improveSkills(double knowledge, double experience) {
@@ -49,6 +52,10 @@ public class Student {
         return this.isInInternship;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     // Builder class
     public static class StudentBuilder {
 
@@ -58,6 +65,7 @@ public class Student {
         private boolean hasLaptop = false;
         private boolean isInUniversity = false;
         private boolean isInInternship = false;
+        private String name = "";
 
         public StudentBuilder setAbilityToStudy(int abilityToStudy) {
             this.abilityToStudy = abilityToStudy;
@@ -81,6 +89,11 @@ public class Student {
 
         public StudentBuilder setIsInInternship(boolean inInternship) {
             this.isInInternship = inInternship;
+            return this;
+        }
+
+        public StudentBuilder setIName(String name) {
+            this.name = name;
             return this;
         }
 
