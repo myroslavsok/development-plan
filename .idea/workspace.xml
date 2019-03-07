@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a44d4247-3e83-408b-96e8-08a69a28210b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/Education/SelfDevelopment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Student.java" afterPath="$PROJECT_DIR$/src/com/company/Student.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/studentPlanTest.java" afterPath="$PROJECT_DIR$/test/studentPlanTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,10 +18,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Student.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="-399">
               <caret line="27" column="60" lean-forward="false" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
               <folding>
                 <element signature="e#319#320#0" expanded="true" />
@@ -74,7 +72,7 @@
       <file leaf-file-name="Internship.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Education/Internship.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
+            <state relative-caret-position="96">
               <caret line="4" column="70" lean-forward="false" selection-start-line="4" selection-start-column="70" selection-end-line="4" selection-end-column="70" />
               <folding>
                 <element signature="e#186#187#0" expanded="true" />
@@ -137,11 +135,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="studentPlanTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="studentPlanTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/studentPlanTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="106" column="5" lean-forward="false" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
+            <state relative-caret-position="104">
+              <caret line="108" column="44" lean-forward="false" selection-start-line="108" selection-start-column="44" selection-end-line="108" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -216,8 +214,8 @@
         <option value="$PROJECT_DIR$/src/com/company/Education/Meetup.java" />
         <option value="$PROJECT_DIR$/src/com/company/Education/University.java" />
         <option value="$PROJECT_DIR$/src/com/company/Education/SelfDevelopment.java" />
-        <option value="$PROJECT_DIR$/test/studentPlanTest.java" />
         <option value="$PROJECT_DIR$/src/com/company/Student.java" />
+        <option value="$PROJECT_DIR$/test/studentPlanTest.java" />
       </list>
     </option>
   </component>
@@ -423,15 +421,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="studentPlanTest - 2019.03.07 at 10h 59m 40s.xml">
-      <configuration name="studentPlanTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="studentPlanTest - 2019.03.07 at 11h 00m 28s.xml">
-      <configuration name="studentPlanTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="studentPlanTest - 2019.03.07 at 11h 00m 42s.xml">
-      <configuration name="studentPlanTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="studentPlanTest - 2019.03.07 at 11h 00m 57s.xml">
       <configuration name="studentPlanTest" configurationId="JUnit" />
     </history-entry>
@@ -451,6 +440,15 @@
       <configuration name="studentPlanTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="studentPlanTest - 2019.03.07 at 11h 46m 11s.xml">
+      <configuration name="studentPlanTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="studentPlanTest - 2019.03.07 at 11h 46m 58s.xml">
+      <configuration name="studentPlanTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="studentPlanTest - 2019.03.07 at 11h 57m 17s.xml">
+      <configuration name="studentPlanTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="studentPlanTest - 2019.03.07 at 12h 00m 15s.xml">
       <configuration name="studentPlanTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -731,17 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Education/Internship.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="4" column="70" lean-forward="false" selection-start-line="4" selection-start-column="70" selection-end-line="4" selection-end-column="70" />
-          <folding>
-            <element signature="e#186#187#0" expanded="true" />
-            <element signature="e#230#231#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Education/Knowledge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -788,16 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/studentPlanTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="106" column="5" lean-forward="false" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Education/University.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -811,7 +788,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="-399">
           <caret line="27" column="60" lean-forward="false" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
           <folding>
             <element signature="e#319#320#0" expanded="true" />
@@ -826,6 +803,27 @@
             <element signature="e#1654#1655#0" expanded="true" />
             <element signature="e#1696#1697#0" expanded="true" />
             <element signature="e#1738#1739#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Education/Internship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="70" lean-forward="false" selection-start-line="4" selection-start-column="70" selection-end-line="4" selection-end-column="70" />
+          <folding>
+            <element signature="e#186#187#0" expanded="true" />
+            <element signature="e#230#231#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/studentPlanTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="108" column="44" lean-forward="false" selection-start-line="108" selection-start-column="44" selection-end-line="108" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

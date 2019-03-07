@@ -1,4 +1,5 @@
 import com.company.DevelopmentActivity;
+import com.company.Education.Internship;
 import com.company.Education.Meetup;
 import com.company.Education.SelfDevelopment;
 import com.company.Education.University;
@@ -22,7 +23,8 @@ class studentPlanTest {
     private PlanCompositor plan;
     private DevelopmentActivity universityStuding,
                                 meetupAttending,
-                                selfDev;
+                                selfDev,
+                                internshipStuding;
 
     private University chdtu;
     private final int UnivKnowledge = 3;
@@ -37,6 +39,10 @@ class studentPlanTest {
     private final int selfDevKnowledge = 3;
     private final int selfDevExperience = 3;
 
+    private Internship interlink;
+    private final int interlinkKnowledge = 3;
+    private final int interlinkExperience = 4;
+
 //    private Meetup WorkshopMeetup;
 //    private final int
 
@@ -49,10 +55,12 @@ class studentPlanTest {
         chdtu = new University(UnivKnowledge, UnivExp);
         OOPMeetup = new Meetup(meetupKnowledge, meetupExperience);
         doingHakerRank = new SelfDevelopment(selfDevKnowledge, selfDevExperience);
+        interlink = new Internship(interlinkKnowledge, interlinkExperience);
 
         universityStuding = new DevelopmentActivity(chdtu, new AtAnyDay());
         meetupAttending = new DevelopmentActivity(OOPMeetup, new OncePerMonth());
         selfDev = new DevelopmentActivity(doingHakerRank, new AtAnyDay());
+        internshipStuding = new DevelopmentActivity(interlink, new AtAnyDay());
     }
 
     @Test
@@ -93,6 +101,26 @@ class studentPlanTest {
 
         assertThat(studentAllInclusive.getKnowledge(), is(8.0));
         assertThat(studentAllInclusive.getExperience(), is(6.0));
+    }
+
+    @Test
+    void applyPlan__internship__isParticipant() {
+        plan = new PlanCompositor(LocalDate.now().plusDays(5)); // trouble
+        plan.addToSchedule(internshipStuding);
+        plan.applyScheduleForStudent(studentAllInclusive);
+
+        assertThat(studentAllInclusive.getKnowledge(), is(15.0));
+        assertThat(studentAllInclusive.getExperience(), is(20.0));
+    }
+
+    @Test
+    void applyPlan__internship__isNotParticipant() {
+        plan = new PlanCompositor(LocalDate.now().plusDays(5)); // trouble
+        plan.addToSchedule(internshipStuding);
+        plan.applyScheduleForStudent(student);
+
+        assertThat(student.getKnowledge(), is(0.0));
+        assertThat(student.getExperience(), is(0.0));
     }
 
     @Test
