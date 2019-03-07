@@ -83,8 +83,7 @@ public class Main {
                                                                               new ArrangedDay(beginnigOfPlanDate.plusYears(6)));
         DevelopmentActivity onlineComunication = new DevelopmentActivity(ITComunity, new ArrangedDay(beginnigOfPlanDate.plusYears(7)));
         planSelfConsiderate.applyScheduleForStudent(Den);
-
-
+        
         ArrayList<Student> students = new ArrayList<>();
         students.add(Alice);
         students.add(Bob);

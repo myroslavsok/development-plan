@@ -29,16 +29,5 @@ public class PlanCompositor {
                 progressDate = progressDate.plusDays(1);
             } while (progressDate.isBefore(this.howLong.get(i)));
         }
-
-//        this.schedule.forEach(event -> {
-//            LocalDate progressDate = this.beginningDate;
-//            do {
-////                System.out.println("date = " + progressDate + " " + progressDate.getDayOfWeek());
-//                if (event.canAttend(progressDate)) {
-//                    event.educate(student);
-//                }
-//                progressDate = progressDate.plusDays(1);
-//            } while (progressDate.isBefore(this.planDeadline));
-//        });
     }
 }
