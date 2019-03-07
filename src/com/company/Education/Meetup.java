@@ -2,14 +2,10 @@ package com.company.Education;
 
 import com.company.Student;
 
-public class Meetup implements KnowledgeSource {
-
-    private double knowledgeLevel;
-    private double experienceLevel;
+public class Meetup extends Knowledge implements KnowledgeSource {
 
     public Meetup(int knowledge, int experience) {
-        this.knowledgeLevel = knowledge;
-        this.experienceLevel = experience;
+        super(knowledge, experience);
     }
 
     @Override

@@ -2,14 +2,10 @@ package com.company.Education;
 
 import com.company.Student;
 
-public class University implements KnowledgeSource {
-
-    private double knowledgeLevel;
-    private double experienceLevel;
+public class University extends Knowledge implements KnowledgeSource {
 
     public University(int knowledge, int experience) {
-        this.knowledgeLevel = knowledge;
-        this.experienceLevel = experience;
+        super(knowledge, experience);
     }
 
     @Override
@@ -18,4 +14,5 @@ public class University implements KnowledgeSource {
             student.improveSkills(this.knowledgeLevel, this.experienceLevel);
         }
     }
+
 }
