@@ -15,10 +15,22 @@ public class Main {
         SelfDevelopment solvindLogicalQuizes = new SelfDevelopment(3, 3);
         Meetup ITintroduction = new Meetup(4, 3);
 
-//        Student Alice = new Student();
+        Student Alice = new Student.StudentBuilder()
+                            .setHasLaptop(true)
+                            .build();
+        Student Bob = new Student.StudentBuilder()
+                            .setHasLaptop(true)
+                            .setIsInInternship(true)
+                            .build();
+        Student Connor = new Student.StudentBuilder()
+                            .build();
+        Student Den = new Student.StudentBuilder()
+                            .setHasLaptop(true)
+                            .setIsInUniversity(true)
+                            .setIsInInternship(true)
+                            .build();
 
-        PlanCompositor palnPacifist = new PlanCompositor(beginnigOfPlanDate.plusYears(7));
-
+//        PlanCompositor palnPacifist = new PlanCompositor(beginnigOfPlanDate.plusYears(7));
 
 //        Arrangement codePartyWithFriends = new Arrangement()
 

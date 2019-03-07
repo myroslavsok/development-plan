@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 class studentPlanTest {
@@ -58,25 +58,22 @@ class studentPlanTest {
                                     .setIsInUniversity(true)
                                     .build();
 
-        chdtu = new University(UnivKnowledge, UnivExp);
         OOPMeetup = new Meetup(meetupKnowledge, meetupExperience);
         doingHakerRank = new SelfDevelopment(selfDevKnowledge, selfDevExperience);
+        chdtu = new University(UnivKnowledge, UnivExp);
         interlink = new Internship(interlinkKnowledge, interlinkExperience);
-//        explainingOOPMeeting = new ArrangedDay();
 
         universityStuding = new DevelopmentActivity(chdtu, new AtWorking());
         meetupAttending = new DevelopmentActivity(OOPMeetup, new OncePerMonth());
         selfDev = new DevelopmentActivity(doingHakerRank, new AtAnyDay());
         internshipStuding = new DevelopmentActivity(interlink, new AtWorking());
-//        meetingWithFriend = new DevelopmentActivity(explainingOOPMeeting, new ArrangedDay(LocalDate.of(2019, 2,3)));
-
     }
 
     @Test
     void applyPlan__university__anyDay__isNotParticipant() {
-        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // trouble
+        plan = new PlanCompositor();
         plan.setBeginningDate(startPlanDate);
-        plan.addToSchedule(universityStuding);
+        plan.addToSchedule(universityStuding, startPlanDate.plusMonths(1));
         plan.applyScheduleForStudent(student);
 
         assertThat(student.getKnowledge(), is(0.0));
@@ -85,9 +82,9 @@ class studentPlanTest {
 
     @Test
     void applyPlan__university__anyDay__isParticipant() {
-        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // 21 working day
+        plan = new PlanCompositor();
         plan.setBeginningDate(startPlanDate);
-        plan.addToSchedule(universityStuding);
+        plan.addToSchedule(universityStuding, startPlanDate.plusMonths(1));
         plan.applyScheduleForStudent(studentAllInclusive);
 
         assertThat(studentAllInclusive.getKnowledge(), is(63.0));
@@ -96,8 +93,8 @@ class studentPlanTest {
 
     @Test
     void applyPlan__meetup__noLaptop() {
-        plan = new PlanCompositor(LocalDate.now().plusMonths(2));
-        plan.addToSchedule(meetupAttending);
+        plan = new PlanCompositor();
+        plan.addToSchedule(meetupAttending, startPlanDate.plusMonths(2));
         plan.applyScheduleForStudent(student);
 
         assertThat(student.getKnowledge(), is(8.0));
@@ -106,8 +103,8 @@ class studentPlanTest {
 
     @Test
     void applyPlan__meetup__hasLaptop() {
-        plan = new PlanCompositor(LocalDate.now().plusMonths(2));
-        plan.addToSchedule(meetupAttending);
+        plan = new PlanCompositor();
+        plan.addToSchedule(meetupAttending, startPlanDate.plusMonths(2));
         plan.applyScheduleForStudent(studentAllInclusive);
 
         assertThat(studentAllInclusive.getKnowledge(), is(8.0));
@@ -116,9 +113,9 @@ class studentPlanTest {
 
     @Test
     void applyPlan__internship__isParticipant() {
-        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // 21 working day
+        plan = new PlanCompositor();
         plan.setBeginningDate(startPlanDate);
-        plan.addToSchedule(internshipStuding);
+        plan.addToSchedule(internshipStuding, startPlanDate.plusMonths(1));
         plan.applyScheduleForStudent(studentAllInclusive);
 
         assertThat(studentAllInclusive.getKnowledge(), is(63.0));
@@ -127,9 +124,9 @@ class studentPlanTest {
 
     @Test
     void applyPlan__internship__isNotParticipant() {
-        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // 21 working day
+        plan = new PlanCompositor();
         plan.setBeginningDate(startPlanDate);
-        plan.addToSchedule(internshipStuding);
+        plan.addToSchedule(internshipStuding, startPlanDate.plusMonths(1));
         plan.applyScheduleForStudent(student);
 
         assertThat(student.getKnowledge(), is(0.0));
@@ -138,10 +135,10 @@ class studentPlanTest {
 
     @Test
     void applyPlan__meetup__fewActivities() {
-        plan = new PlanCompositor(startPlanDate.plusMonths(1)); // 21 working day 31 total
-        plan.setBeginningDate(startPlanDate);
-        plan.addToSchedule(selfDev);
-        plan.addToSchedule(universityStuding);
+        plan = new PlanCompositor();
+        plan.setBeginningDate(startPlanDate); // 21 working day 31 total
+        plan.addToSchedule(selfDev, startPlanDate.plusMonths(1));
+        plan.addToSchedule(universityStuding, startPlanDate.plusMonths(1));
         plan.applyScheduleForStudent(studentAllInclusive);
 
         assertThat(studentAllInclusive.getKnowledge(), is(156.0));
@@ -150,21 +147,33 @@ class studentPlanTest {
 
     @Test
     void applyPlan__arrangement_arrangedDay() {
-        plan = new PlanCompositor(startPlanDate.plusDays(10));
+        plan = new PlanCompositor();
         plan.setBeginningDate(startPlanDate);
-        plan.addToSchedule(selfDev);
+        plan.addToSchedule(selfDev, startPlanDate.plusDays(10));
         plan.applyScheduleForStudent(studentAllInclusive); // result: studentAllInclusive knowledge 30, exp 30
 
         Arrangement explainingOOP = new Arrangement(studentAllInclusive);
         DevelopmentActivity meetingWithFriends = new DevelopmentActivity(explainingOOP,
                                                  new ArrangedDay(startPlanDate.plusDays(10)));
-        plan = new PlanCompositor(startPlanDate.plusMonths(1));
+        plan = new PlanCompositor();
         plan.setBeginningDate(startPlanDate);
-        plan.addToSchedule(meetingWithFriends);
+        plan.addToSchedule(meetingWithFriends, startPlanDate.plusMonths(1));
         plan.applyScheduleForStudent(student);
 
         assertThat(student.getKnowledge(), is(6.0));
         assertThat(student.getExperience(), is(6.0));
+    }
+
+    @Test
+    void applyPlan__differentDurationOfPlanEvents() {
+        plan = new PlanCompositor();
+        plan.setBeginningDate(startPlanDate);
+        plan.addToSchedule(selfDev, startPlanDate.plusMonths(2));
+        plan.addToSchedule(universityStuding, startPlanDate.plusMonths(1));
+        plan.applyScheduleForStudent(studentAllInclusive);
+
+        assertThat(studentAllInclusive.getKnowledge(), is(246.0));
+        assertThat(studentAllInclusive.getExperience(), is(25.0));
     }
 
 }

@@ -5,17 +5,14 @@ import java.util.ArrayList;
 
 public class PlanCompositor {
 
-    private LocalDate planDeadline;
     private LocalDate beginningDate = LocalDate.now();
 
     private ArrayList<DevelopmentActivity> schedule = new ArrayList<>();
+    private ArrayList<LocalDate> howLong = new ArrayList<>();
 
-    public PlanCompositor(LocalDate deadline) {
-        this.planDeadline = deadline;
-    }
-
-    public void addToSchedule(DevelopmentActivity event) {
-        schedule.add(event);
+    public void addToSchedule(DevelopmentActivity event, LocalDate howLong) {
+        this.schedule.add(event);
+        this.howLong.add(howLong);
     }
 
     public void setBeginningDate(LocalDate date) {
@@ -23,15 +20,25 @@ public class PlanCompositor {
     }
 
     public void applyScheduleForStudent(Student student) {
-        this.schedule.forEach(event -> {
+        for (int i = 0; i < this.schedule.size(); i++) {
             LocalDate progressDate = this.beginningDate;
             do {
-//                System.out.println("date = " + progressDate + " " + progressDate.getDayOfWeek());
-                if (event.canAttend(progressDate)) {
-                    event.educate(student);
+                if (this.schedule.get(i).canAttend(progressDate)) {
+                    this.schedule.get(i).educate(student);
                 }
                 progressDate = progressDate.plusDays(1);
-            } while (progressDate.isBefore(this.planDeadline));
-        });
+            } while (progressDate.isBefore(this.howLong.get(i)));
+        }
+
+//        this.schedule.forEach(event -> {
+//            LocalDate progressDate = this.beginningDate;
+//            do {
+////                System.out.println("date = " + progressDate + " " + progressDate.getDayOfWeek());
+//                if (event.canAttend(progressDate)) {
+//                    event.educate(student);
+//                }
+//                progressDate = progressDate.plusDays(1);
+//            } while (progressDate.isBefore(this.planDeadline));
+//        });
     }
 }
