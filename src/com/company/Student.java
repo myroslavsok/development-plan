@@ -4,6 +4,7 @@ public class Student {
     private double knowledge = 0;
     private double experience = 0;
     private double abilityToStudy;
+    private double abilityToGetExperience;
 
     private boolean hasLaptop;
     private boolean isInUniversity;
@@ -11,19 +12,20 @@ public class Student {
 
 
     public Student() {
-        this(1, false, false, false);
+        this(1, 1, false, false, false);
     }
 
-    public Student(double abilityToStudy, boolean hasLaptop) {
-        this(abilityToStudy, hasLaptop, false, false);
+    public Student(double abilityToStudy, double abilityToGetExperience, boolean hasLaptop) {
+        this(abilityToStudy, abilityToGetExperience, hasLaptop, false, false);
     }
 
-    public Student(double abilityToStudy, boolean hasLaptop, boolean isInUniversity) {
-        this(abilityToStudy, hasLaptop, isInUniversity, false);
+    public Student(double abilityToStudy, double abilityToGetExperience, boolean hasLaptop, boolean isInUniversity) {
+        this(abilityToStudy, abilityToGetExperience, hasLaptop, isInUniversity, false);
     }
 
-    public Student(double abilityToStudy, boolean hasLaptop, boolean isInUniversity, boolean isInInternship) {
+    public Student(double abilityToStudy, double abilityToGetExperience, boolean hasLaptop, boolean isInUniversity, boolean isInInternship) {
         this.abilityToStudy = abilityToStudy;
+        this.abilityToGetExperience = abilityToGetExperience;
         this.hasLaptop = hasLaptop;
         this.isInUniversity = isInUniversity;
         this.isInInternship = isInInternship;
@@ -39,7 +41,7 @@ public class Student {
     }
 
     public double getExperience() {
-        return this.experience;
+        return this.experience * this.abilityToGetExperience;
     }
 
     public boolean gethasLaptop() {
