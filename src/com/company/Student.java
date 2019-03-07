@@ -36,6 +36,11 @@ public class Student {
         this.experience += experience;
     }
 
+    public void showSkills() {
+        System.out.println("knowledge = " + Math.round(getKnowledge()));
+        System.out.println("experience = " + Math.round(getExperience()));
+    }
+
     public double getKnowledge() {
         return this.knowledge * this.abilityToStudy;
     }

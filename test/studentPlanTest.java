@@ -1,10 +1,8 @@
 import com.company.DevelopmentActivity;
-import com.company.Education.Internship;
-import com.company.Education.Meetup;
-import com.company.Education.SelfDevelopment;
-import com.company.Education.University;
+import com.company.Education.*;
 import com.company.PlanCompositor;
 import com.company.Student;
+import com.company.studyConditions.ArrangedDay;
 import com.company.studyConditions.AtAnyDay;
 import com.company.studyConditions.AtWorking;
 import com.company.studyConditions.OncePerMonth;
@@ -25,7 +23,8 @@ class studentPlanTest {
     private DevelopmentActivity universityStuding,
                                 meetupAttending,
                                 selfDev,
-                                internshipStuding;
+                                internshipStuding,
+                                meetingWithFriend;
 
     private University chdtu;
     private final int UnivKnowledge = 3;
@@ -44,14 +43,14 @@ class studentPlanTest {
     private final int interlinkKnowledge = 3;
     private final int interlinkExperience = 4;
 
+    private ArrangedDay explainingOOPMeeting;
+
     private LocalDate startPlanDate;
-
-//    private Meetup WorkshopMeetup;
-//    private final int
-
 
     @BeforeEach
     void setUp() {
+        startPlanDate = LocalDate.of(2019, 3, 1);
+
         student = new Student();
         studentAllInclusive = new Student(1, 1,true, true, true);
 
@@ -59,13 +58,14 @@ class studentPlanTest {
         OOPMeetup = new Meetup(meetupKnowledge, meetupExperience);
         doingHakerRank = new SelfDevelopment(selfDevKnowledge, selfDevExperience);
         interlink = new Internship(interlinkKnowledge, interlinkExperience);
+//        explainingOOPMeeting = new ArrangedDay();
 
         universityStuding = new DevelopmentActivity(chdtu, new AtWorking());
         meetupAttending = new DevelopmentActivity(OOPMeetup, new OncePerMonth());
         selfDev = new DevelopmentActivity(doingHakerRank, new AtAnyDay());
         internshipStuding = new DevelopmentActivity(interlink, new AtWorking());
+//        meetingWithFriend = new DevelopmentActivity(explainingOOPMeeting, new ArrangedDay(LocalDate.of(2019, 2,3)));
 
-        startPlanDate = LocalDate.of(2019, 3, 1);
     }
 
     @Test
@@ -142,6 +142,25 @@ class studentPlanTest {
 
         assertThat(studentAllInclusive.getKnowledge(), is(156.0));
         assertThat(studentAllInclusive.getExperience(), is(135.0));
+    }
+
+    @Test
+    void applyPlan__arrangement_arrangedDay() {
+        plan = new PlanCompositor(startPlanDate.plusDays(10));
+        plan.setBeginningDate(startPlanDate);
+        plan.addToSchedule(selfDev);
+        plan.applyScheduleForStudent(studentAllInclusive); // result: studentAllInclusive knowledge 30, exp 30
+
+        Arrangement explainingOOP = new Arrangement(studentAllInclusive);
+        DevelopmentActivity meetingWithFriends = new DevelopmentActivity(explainingOOP,
+                                                 new ArrangedDay(startPlanDate.plusDays(10)));
+        plan = new PlanCompositor(startPlanDate.plusMonths(1));
+        plan.setBeginningDate(startPlanDate);
+        plan.addToSchedule(meetingWithFriends);
+        plan.applyScheduleForStudent(student);
+
+        assertThat(student.getKnowledge(), is(6.0));
+        assertThat(student.getExperience(), is(6.0));
     }
 
 }
