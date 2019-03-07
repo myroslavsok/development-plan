@@ -39,7 +39,19 @@ public class Student {
     }
 
     public double getExperience() {
-        return this.experience * this.abilityToStudy;
+        return this.experience;
+    }
+
+    public boolean gethasLaptop() {
+        return this.hasLaptop;
+    }
+
+    public boolean getIsInUniversity() {
+        return this.isInUniversity;
+    }
+
+    public boolean getIsInInternship() {
+        return this.isInInternship;
     }
 
 }
