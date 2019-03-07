@@ -1,34 +1,22 @@
 package com.company;
 
 public class Student {
+
     private double knowledge = 0;
     private double experience = 0;
+
     private double abilityToStudy;
     private double abilityToGetExperience;
-
     private boolean hasLaptop;
     private boolean isInUniversity;
     private boolean isInInternship;
 
-
-    public Student() {
-        this(1, 1, false, false, false);
-    }
-
-    public Student(double abilityToStudy, double abilityToGetExperience, boolean hasLaptop) {
-        this(abilityToStudy, abilityToGetExperience, hasLaptop, false, false);
-    }
-
-    public Student(double abilityToStudy, double abilityToGetExperience, boolean hasLaptop, boolean isInUniversity) {
-        this(abilityToStudy, abilityToGetExperience, hasLaptop, isInUniversity, false);
-    }
-
-    public Student(double abilityToStudy, double abilityToGetExperience, boolean hasLaptop, boolean isInUniversity, boolean isInInternship) {
-        this.abilityToStudy = abilityToStudy;
-        this.abilityToGetExperience = abilityToGetExperience;
-        this.hasLaptop = hasLaptop;
-        this.isInUniversity = isInUniversity;
-        this.isInInternship = isInInternship;
+    public Student(StudentBuilder builder) {
+        this.abilityToStudy = builder.abilityToStudy;
+        this.abilityToGetExperience = builder.abilityToGetExperience;
+        this.hasLaptop = builder.hasLaptop;
+        this.isInUniversity = builder.isInUniversity;
+        this.isInInternship = builder.isInInternship;
     }
 
     public void improveSkills(double knowledge, double experience) {
@@ -59,6 +47,47 @@ public class Student {
 
     public boolean getIsInInternship() {
         return this.isInInternship;
+    }
+
+    // Builder class
+    public static class StudentBuilder {
+
+        // optional parameters
+        private double abilityToStudy = 1;
+        private double abilityToGetExperience = 1;
+        private boolean hasLaptop = false;
+        private boolean isInUniversity = false;
+        private boolean isInInternship = false;
+
+        public StudentBuilder setAbilityToStudy(int abilityToStudy) {
+            this.abilityToStudy = abilityToStudy;
+            return this;
+        }
+
+        public StudentBuilder setAbilityToGetExperience(int abilityToGetExperience) {
+            this.abilityToGetExperience = abilityToGetExperience;
+            return this;
+        }
+
+        public StudentBuilder setHasLaptop(boolean hasLaptop) {
+            this.hasLaptop = hasLaptop;
+            return this;
+        }
+
+        public StudentBuilder setIsInUniversity(boolean inUniversity) {
+            this.isInUniversity = inUniversity;
+            return this;
+        }
+
+        public StudentBuilder setIsInInternship(boolean inInternship) {
+            this.isInInternship = inInternship;
+            return this;
+        }
+
+        public Student build() {
+            return new Student(this);
+        }
+
     }
 
 }

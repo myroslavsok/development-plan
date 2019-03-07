@@ -51,8 +51,12 @@ class studentPlanTest {
     void setUp() {
         startPlanDate = LocalDate.of(2019, 3, 1);
 
-        student = new Student();
-        studentAllInclusive = new Student(1, 1,true, true, true);
+        student = new Student.StudentBuilder().build();
+        studentAllInclusive = new Student.StudentBuilder()
+                                    .setHasLaptop(true)
+                                    .setIsInInternship(true)
+                                    .setIsInUniversity(true)
+                                    .build();
 
         chdtu = new University(UnivKnowledge, UnivExp);
         OOPMeetup = new Meetup(meetupKnowledge, meetupExperience);
